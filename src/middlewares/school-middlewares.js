@@ -29,6 +29,23 @@ function validateCreateRequest(req, res, next) {
     next();
 }
 
+function validateListRequest(req, res, next) {
+    if(!req.body.latitude) {
+        return res.status(400).json({
+            message: "something went wrong while fetching school",
+            error: "user latitude is not found in incoming request"
+        });
+    }
+    if(!req.body.longitude) {
+        return res.status(400).json({
+            message: "something went wrong while fetching school",
+            error: "user longitude is not found in incoming request"
+        });
+    }
+    next();
+}
+
 module.exports = {
-    validateCreateRequest
+    validateCreateRequest,
+    validateListRequest
 };

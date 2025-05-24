@@ -17,7 +17,10 @@ async function createSchool(req, res) {
 
 async function getAllSchool(req, res) {
     try {
-        const response = await schoolServices.getAllSchool();
+        const response = await schoolServices.getAllSchool({
+            userLatitude : req.body.latitude,
+            userLongitude : req.body.longitude
+        });
         return res.status(200).json(response);
     } catch (error) {
         return res.status(400).json(error);
